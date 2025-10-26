@@ -2,6 +2,8 @@
 
 A FastMCP server that provides real-time gas prices for locations in Germany using the Tankerkoenig API.
 
+**Live Demo:** https://gas-mcp.jonasradke.dev
+
 ## Features
 
 - Convert location names to coordinates using OpenStreetMap/Nominatim
@@ -12,7 +14,7 @@ A FastMCP server that provides real-time gas prices for locations in Germany usi
 ## Setup
 
 1. **Install dependencies:**
-```bash
+```bashbuilöt
 pip install fastmcp requests python-dotenv
 ```
 
@@ -49,6 +51,53 @@ The server will run on `http://0.0.0.0:8000`
 2. Queries Tankerkoenig API for stations within 5km
 3. Sorts results by cheapest available fuel price
 4. Returns top 5 stations with prices and addresses
+
+## Docker Deployment
+
+### Docker Compose (Recommended)
+
+**On your server:**
+```bash
+# Clone repository
+git clone https://github.com/jonasradke-dev/gas-price-mcp.git
+cd gas-price-mcp
+
+# Create .env file
+echo "TANKERKOENIG_API_KEY=your_api_key_here" > .env
+
+# Start the service
+docker compose up -d
+
+# View logs
+docker compose logs -f
+
+# Stop the service
+docker compose down
+```
+
+**For Podman:**
+```bash
+podman compose up -d
+```
+
+**Update app:**
+```bash
+git pull
+docker compose up -d --build
+```
+
+### Docker (Manual)
+
+**Build and run:**
+```bash
+docker build -t gas-price-mcp .
+docker run -d \
+  --name gas-price-mcp \
+  --restart unless-stopped \
+  -p 8000:8000 \
+  -e TANKERKOENIG_API_KEY=your_api_key \
+  gas-price-mcp
+```
 
 ## API Credits
 

@@ -49,7 +49,6 @@ def get_gasprice_from_location(location: str) -> str:
 
     response = requests.get(url, params=params)
     data = response.json()
-    print(data)
 
     if not data.get("ok"):
         return f"Error: {data.get('message', 'Unknown error')}"
