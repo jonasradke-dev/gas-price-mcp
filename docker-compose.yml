@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  gas-price-mcp:
+    build: .
+    container_name: gas-price-mcp
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - TANKERKOENIG_API_KEY=${TANKERKOENIG_API_KEY}
+    env_file:
+      - .env
