@@ -2,7 +2,6 @@
 
 A FastMCP server that provides real-time gas prices for locations in Germany using the Tankerkoenig API.
 
-**Live Demo:** https://gas-mcp.jonasradke.dev
 
 ## Features
 
